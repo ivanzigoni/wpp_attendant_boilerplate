@@ -1,4 +1,4 @@
-const { Venom } = require("./bootstrap");
+const { Venom } = require("./venom");
 
 function start(client) {
     client.onMessage((message) => {
@@ -15,4 +15,10 @@ function start(client) {
     });
 }
 
-start(Venom.GetInstance());
+async function bootstrap() {
+    const client = await Venom.GetInstance();
+
+    start(client);
+}
+
+bootstrap();
