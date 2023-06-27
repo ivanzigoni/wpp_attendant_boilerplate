@@ -3,11 +3,12 @@ const q = require("qrcode-terminal")
 const os = require("os");
 
 const client = new Client({
-    puppeteer: {
-        executablePath: '/usr/bin/google-chrome',
-        args: ["--disable-gpu", "--no-sandbox"],
-        headless: true
-    },
+    // puppeteer: {
+    //     executablePath: '/usr/bin/google-chrome',
+    //     args: ["--disable-gpu", "--no-sandbox"],
+    //     headless: true
+    // },
+    puppeteer: { args: ["--no-sandbox"] },
     authStrategy: new LocalAuth(),
 });
 
@@ -57,8 +58,7 @@ client.on("disconnected", () => {
 setInterval(() => {
     console.log(new Date().toISOString() + " app running")
 
-    console.log(client.pupBrowser)
-    console.log(client.pupPage)
+
 }, 30000)
 
 client.initialize();
