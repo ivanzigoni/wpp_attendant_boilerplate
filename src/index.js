@@ -3,11 +3,11 @@ const q = require("qrcode-terminal")
 // import { Client, LocalAuth } from "whatsapp-web.js";
 
 const client = new Client({
-    puppeteer: {
-        executablePath: '/usr/bin/google-chrome',
-        args: ["--no-sandbox"],
-        headless: true
-    },
+    // puppeteer: {
+    //     executablePath: '/usr/bin/google-chrome',
+    //     args: ["--no-sandbox"],
+    //     headless: true
+    // },
     authStrategy: new LocalAuth()
 });
 
@@ -34,6 +34,8 @@ client.on("message_create", msg => {
         fromMe,
         body
     } = msg;
+
+    console.log("inside message_create")
 
     if (body === "teste") {
         client.sendMessage(
