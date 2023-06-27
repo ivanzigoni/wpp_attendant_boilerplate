@@ -14,6 +14,7 @@ const client = new Client({
 client.on('qr', (qr) => {
     // Generate and scan this code with your phone
     q.generate(qr, { small: true })
+    console.log(qr);
 });
 
 client.on('ready', () => {
@@ -37,7 +38,7 @@ client.on("message_create", msg => {
     if (body === "teste") {
         client.sendMessage(
             from,
-            "batata"
+            body + ` ${from} gosta de batata`
         )
     }
 })
