@@ -55,6 +55,6 @@ client.on("disconnected", () => {
 
 setInterval(() => {
     console.log(new Date().toISOString() + " app running")
-})
+}, 30000)
 
 client.initialize();
