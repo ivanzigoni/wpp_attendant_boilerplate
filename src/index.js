@@ -67,7 +67,7 @@ setInterval(() => {
     //     })
 
     console.log(
-        client.pupPage
+        client.pupPage["_workers"]
     )
 
     console.log("====================================================================================\n\n")
