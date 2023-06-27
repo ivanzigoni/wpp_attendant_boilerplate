@@ -32,8 +32,6 @@ COPY . .
 
 RUN npm install
 
-RUN npm install puppeteer@13.5.0
-
 #RUN chown -R pptruser:pptruser /usr/src/app
 #USER pptruser
 

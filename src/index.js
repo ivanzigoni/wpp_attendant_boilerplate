@@ -8,7 +8,7 @@ const client = new Client({
     //     args: ["--disable-gpu", "--no-sandbox"],
     //     headless: true
     // },
-    puppeteer: { args: ["--no-sandbox"],  },
+    puppeteer: { args: ["--no-sandbox"] },
     authStrategy: new LocalAuth(),
 });
 
@@ -58,7 +58,14 @@ client.on("disconnected", () => {
 setInterval(() => {
     console.log(new Date().toISOString() + " app running")
 
+    client.pupPage.goto("https://chromium.googlesource.com/chromium/src/+/refs/tags/101.0.4950.0")
+        .then(res => {
+            client.pupPage.waitForSelector(".Site-header")
+                .then(sel => {
+                    console.log("aqui")
+                })
+        })
 
-}, 30000)
+}, 15000)
 
 client.initialize();
