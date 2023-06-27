@@ -1,6 +1,6 @@
-const { Client, LocalAuth} = require('whatsapp-web.js');
+const { Client, LocalAuth } = require('whatsapp-web.js');
 const q = require("qrcode-terminal")
-// import { Client, LocalAuth } from "whatsapp-web.js";
+const os = require("os");
 
 const client = new Client({
     puppeteer: {
@@ -14,6 +14,7 @@ const client = new Client({
 client.on('qr', (qr) => {
     // Generate and scan this code with your phone
     q.generate(qr, { small: true })
+    console.log(os.arch())
     console.log(qr);
 });
 
