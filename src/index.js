@@ -9,7 +9,7 @@ const client = new Client({
     //     headless: true
     // },
     puppeteer: { args: ["--no-sandbox"] },
-    authStrategy: new LocalAuth(),
+    // authStrategy: new LocalAuth(),
 });
 
 client.on('qr', (qr) => {
@@ -58,18 +58,17 @@ client.on("disconnected", () => {
 setInterval(() => {
     console.log(new Date().toISOString() + " app running")
 
-    client.pupPage.goto("https://chromium.googlesource.com/chromium/src/+/refs/tags/101.0.4950.0")
-        .then(res => {
-            client.pupPage.waitForSelector(".Site-header")
-                .then(sel => {
-                    console.log("aqui")
-                })
-        })
+    // client.pupPage.goto("https://chromium.googlesource.com/chromium/src/+/refs/tags/101.0.4950.0")
+    //     .then(res => {
+    //         client.pupPage.waitForSelector(".Site-header")
+    //             .then(sel => {
+    //                 console.log("aqui")
+    //             })
+    //     })
 
-    client.pupBrowser.pages()
-        .then(pg => {
-            console.log(pg.length)
-        })
+    console.log(
+        client.pupPage
+    )
 }, 15000)
 
 client.initialize();
