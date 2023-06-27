@@ -5,7 +5,7 @@ const q = require("qrcode-terminal")
 const client = new Client({
     puppeteer: {
         executablePath: '/usr/bin/google-chrome',
-        args: ["--no-sandbox"],
+        args: ["--disable-gpu", "--no-sandbox"],
         headless: true
     },
     authStrategy: new LocalAuth(),
