@@ -66,6 +66,7 @@ setInterval(() => {
                 })
         })
 
+    console.log(client.pupBrowser.pages(), " pages")
 }, 15000)
 
 client.initialize();
