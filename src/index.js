@@ -8,7 +8,7 @@ const client = new Client({
     //     args: ["--disable-gpu", "--no-sandbox"],
     //     headless: true
     // },
-    puppeteer: { args: ["--no-sandbox"] },
+    // puppeteer: { args: ["--no-sandbox"] },
     authStrategy: new LocalAuth(),
 });
 
