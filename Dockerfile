@@ -1,7 +1,7 @@
-FROM node
+FROM node:20
 
-COPY . .
+COPY src .
 
-RUN "npm install"
+RUN npm install
 
 CMD ["npm", "start"]

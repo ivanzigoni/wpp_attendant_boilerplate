@@ -1,24 +1,40 @@
-const { Venom } = require("./venom");
+const { Client, LocalAuth} = require('whatsapp-web.js');
+const q = require("qrcode-terminal")
+// import { Client, LocalAuth } from "whatsapp-web.js";
 
-function start(client) {
-    client.onMessage((message) => {
-        if (message.body === 'Hi' && message.isGroupMsg === false) {
-            client
-                .sendText(message.from, 'Welcome Venom 🕷')
-                .then((result) => {
-                    console.log('Result: ', result); //return object success
-                })
-                .catch((erro) => {
-                    console.error('Error when sending: ', erro); //return object error
-                });
-        }
-    });
-}
+const client = new Client({
+    authStrategy: new LocalAuth()
+});
 
-async function bootstrap() {
-    const client = await Venom.GetInstance();
+client.on('qr', (qr) => {
+    // Generate and scan this code with your phone
+    q.generate(qr, { small: true })
+});
 
-    start(client);
-}
+client.on('ready', () => {
+    console.log('Client is ready!');
+});
 
-bootstrap();
+client.on('message', msg => {
+    console.log("aki")
+    if (msg.body === '!ping') {
+        msg.reply('pong');
+    }
+});
+
+client.on("message_create", msg => {
+    const {
+        from,
+        fromMe,
+        body
+    } = msg;
+
+    if (body === "teste") {
+        client.sendMessage(
+            from,
+            "batata"
+        )
+    }
+})
+
+client.initialize();
