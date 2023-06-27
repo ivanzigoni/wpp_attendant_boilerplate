@@ -8,7 +8,7 @@ const client = new Client({
         args: ["--no-sandbox"],
         headless: true
     },
-    authStrategy: new LocalAuth()
+    authStrategy: new LocalAuth(),
 });
 
 client.on('qr', (qr) => {
@@ -43,6 +43,18 @@ client.on("message_create", msg => {
             body + ` ${from} gosta de batata`
         )
     }
+})
+
+client.on("auth_failure", () => {
+    console.log("auth failure")
+})
+
+client.on("disconnected", () => {
+    console.log("disconnected")
+})
+
+setInterval(() => {
+    console.log(new Date().toISOString() + " app running")
 })
 
 client.initialize();
