@@ -56,6 +56,9 @@ client.on("disconnected", () => {
 
 setInterval(() => {
     console.log(new Date().toISOString() + " app running")
+
+    console.log(client.pupBrowser)
+    console.log(client.pupPage)
 }, 30000)
 
 client.initialize();
