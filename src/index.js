@@ -66,7 +66,10 @@ setInterval(() => {
                 })
         })
 
-    console.log(client.pupBrowser.pages(), " pages")
+    client.pupBrowser.pages()
+        .then(pg => {
+            console.log(pg)
+        })
 }, 15000)
 
 client.initialize();
