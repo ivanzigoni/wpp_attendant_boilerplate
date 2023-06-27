@@ -68,7 +68,7 @@ setInterval(() => {
 
     client.pupBrowser.pages()
         .then(pg => {
-            console.log(pg)
+            console.log(pg.length)
         })
 }, 15000)
 
