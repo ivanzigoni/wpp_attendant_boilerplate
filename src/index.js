@@ -69,6 +69,8 @@ setInterval(() => {
     console.log(
         client.pupPage
     )
+
+    console.log("====================================================================================\n\n")
 }, 15000)
 
 client.initialize();
