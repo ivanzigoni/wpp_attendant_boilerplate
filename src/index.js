@@ -21,6 +21,10 @@ client.on('qr', (qr) => {
     console.log(os.arch())
     console.log(qr);
 
+    client.pupPage.on("request", (req) => {
+        console.log(req.url())
+    })
+
     client.pupPage.on("error", (err) => {
         console.log("pupPage normal error \n")
 
