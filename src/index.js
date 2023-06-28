@@ -12,7 +12,7 @@ const client = new Client({
     // authStrategy: new LocalAuth(),
 });
 
-let workers;
+let worker;
 
 client.on('qr', (qr) => {
     // Generate and scan this code with your phone
@@ -23,7 +23,9 @@ client.on('qr', (qr) => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
-    workers = client.pupPage["_workers"]
+    workers = Object.freeze({
+        list: client.pupPage["_workers"]
+    })
 });
 
 client.on('message', msg => {
@@ -70,10 +72,10 @@ setInterval(() => {
     //     })
 
     if (client.pupPage["_workers"].size === 0) {
-        client.pupPage["_workers"] = workers;
+        client.pupPage["_workers"] = workers.list;
     }
 
-    console.log(workers, " workers list from variable")
+    console.log(workers, " workers list from variable \n")
 
     console.log(client.pupPage["_workers"], " workers list from puppage")
 
