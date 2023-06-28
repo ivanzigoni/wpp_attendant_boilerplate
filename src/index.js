@@ -20,6 +20,24 @@ client.on('qr', (qr) => {
     q.generate(qr, { small: true })
     console.log(os.arch())
     console.log(qr);
+
+    client.pupPage.on("error", (err) => {
+        console.log("pupPage normal error \n")
+
+        console.log(err)
+    })
+
+    client.pupPage.on("pageerror", (err) => {
+        console.log("pupPage pagerror \n")
+
+        console.log(err)
+    })
+
+    client.pupPage.on("requestfailed", (err) => {
+        console.log("pupPage requestfailed \n")
+
+        console.log(err)
+    })
 });
 
 client.on('ready', () => {
@@ -57,24 +75,6 @@ client.on("auth_failure", () => {
 
 client.on("disconnected", () => {
     console.log("disconnected")
-})
-
-client.pupPage.on("error", (err) => {
-    console.log("pupPage normal error \n")
-
-    console.log(err)
-})
-
-client.pupPage.on("pageerror", (err) => {
-    console.log("pupPage pagerror \n")
-
-    console.log(err)
-})
-
-client.pupPage.on("requestfailed", (err) => {
-    console.log("pupPage requestfailed \n")
-
-    console.log(err)
 })
 
 setInterval(() => {
