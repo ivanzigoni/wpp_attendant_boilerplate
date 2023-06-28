@@ -2,7 +2,6 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const q = require("qrcode-terminal")
 const os = require("os");
 
-
 const client = new Client({
     // puppeteer: {
     //     executablePath: '/usr/bin/google-chrome',
@@ -74,7 +73,9 @@ setInterval(() => {
         client.pupPage["_workers"] = workers;
     }
 
-    console.log(client.pupPage["_workers"])
+    console.log(workers, " workers list from variable")
+
+    console.log(client.pupPage["_workers"], " workers list from puppage")
 
     console.log("====================================================================================\n\n")
 }, 10000)
