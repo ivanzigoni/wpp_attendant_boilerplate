@@ -13,7 +13,7 @@ const client = new Client({
     // authStrategy: new LocalAuth(),
 });
 
-let workers;
+let workers
 
 client.on('qr', (qr) => {
     // Generate and scan this code with your phone
