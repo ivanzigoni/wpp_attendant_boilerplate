@@ -2,6 +2,7 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const q = require("qrcode-terminal")
 const os = require("os");
 
+
 const client = new Client({
     // puppeteer: {
     //     executablePath: '/usr/bin/google-chrome',
@@ -12,6 +13,8 @@ const client = new Client({
     // authStrategy: new LocalAuth(),
 });
 
+let workers;
+
 client.on('qr', (qr) => {
     // Generate and scan this code with your phone
     q.generate(qr, { small: true })
@@ -21,6 +24,7 @@ client.on('qr', (qr) => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
+    workers = client.pupPage["_workers"]
 });
 
 client.on('message', msg => {
@@ -66,11 +70,13 @@ setInterval(() => {
     //             })
     //     })
 
-    console.log(
-        client.pupPage["_workers"]
-    )
+    if (client.pupPage["_workers"].size === 0) {
+        client.pupPage["_workers"] = workers;
+    }
+
+    console.log(client.pupPage["_workers"])
 
     console.log("====================================================================================\n\n")
-}, 15000)
+}, 10000)
 
 client.initialize();
