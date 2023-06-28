@@ -59,6 +59,24 @@ client.on("disconnected", () => {
     console.log("disconnected")
 })
 
+client.pupPage.on("error", (err) => {
+    console.log("pupPage normal error \n")
+
+    console.log(err)
+})
+
+client.pupPage.on("pageerror", (err) => {
+    console.log("pupPage pagerror \n")
+
+    console.log(err)
+})
+
+client.pupPage.on("requestfailed", (err) => {
+    console.log("pupPage requestfailed \n")
+
+    console.log(err)
+})
+
 setInterval(() => {
     console.log(new Date().toISOString() + " app running")
 
@@ -71,6 +89,7 @@ setInterval(() => {
     //     })
 
     if (client.pupPage["_workers"].size === 0) {
+        console.log("WORKERS DELETED =================================== \n")
         client.pupPage["_workers"] = workers;
     }
 
