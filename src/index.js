@@ -1,4 +1,5 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
+const _ = require("lodash");
 const q = require("qrcode-terminal")
 const os = require("os");
 
@@ -23,9 +24,7 @@ client.on('qr', (qr) => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
-    workers = Object.freeze({
-        list: client.pupPage["_workers"]
-    })
+    workers = _.cloneDeep(client.pupPage["_workers"]);
 });
 
 client.on('message', msg => {
@@ -72,7 +71,7 @@ setInterval(() => {
     //     })
 
     if (client.pupPage["_workers"].size === 0) {
-        client.pupPage["_workers"] = workers.list;
+        client.pupPage["_workers"] = workers;
     }
 
     console.log(workers, " workers list from variable \n")
