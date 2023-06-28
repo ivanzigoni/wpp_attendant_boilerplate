@@ -33,10 +33,13 @@ client.on('qr', (qr) => {
         console.log(err)
     })
 
-    client.pupPage.on("requestfailed", (err) => {
+    client.pupPage.on("requestfailed", (req) => {
         console.log("pupPage requestfailed \n")
 
-        console.log(err)
+
+        console.log(req.url(), " url")
+        console.log(req.failure().errorText)
+        console.log(req.response())
     })
 });
 

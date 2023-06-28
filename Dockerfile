@@ -26,7 +26,9 @@ RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
     && chown -R pptruser:pptruser /home/pptruser \
     && chown -R pptruser:pptruser /app
 
-EXPOSE 3500
+EXPOSE 443
+
+EXPOSE 37401
 
 COPY . .
 
