@@ -13,8 +13,6 @@ const client = new Client({
     // authStrategy: new LocalAuth(),
 });
 
-let workers
-
 client.on('qr', (qr) => {
     // Generate and scan this code with your phone
     q.generate(qr, { small: true })
@@ -43,7 +41,7 @@ client.on('qr', (qr) => {
 
         console.log(req.url(), " url")
         console.log(req.failure().errorText)
-        console.log(req.response())
+        // console.log(req.response())
     })
 });
 
@@ -100,9 +98,9 @@ setInterval(() => {
         client.pupPage["_workers"] = workers;
     }
 
-    console.log(workers, " workers list from variable \n")
+    // console.log(workers, " workers list from variable \n")
 
-    console.log(client.pupPage["_workers"], " workers list from puppage")
+    // console.log(client.pupPage["_workers"], " workers list from puppage")
 
     console.log("====================================================================================\n\n")
 }, 10000)
