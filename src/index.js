@@ -102,7 +102,7 @@ setInterval(() => {
 
     // console.log(client.pupPage["_workers"], " workers list from puppage")
 
-    client.pupBrowser.pages().then(p => console.log(p.length, + " number of pages"))
+    client.pupBrowser.pages().then(p => console.log(p.length, " number of pages"))
     console.log("====================================================================================\n\n")
 }, 10000)
 
