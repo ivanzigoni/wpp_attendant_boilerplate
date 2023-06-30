@@ -47,7 +47,6 @@ client.on('qr', (qr) => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
-    workers = _.cloneDeep(client.pupPage["_workers"]);
 });
 
 client.on('message', msg => {
