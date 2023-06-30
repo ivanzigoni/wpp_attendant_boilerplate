@@ -19,6 +19,12 @@ client.on('qr', (qr) => {
     console.log(os.arch())
     console.log(qr);
 
+    client.pupBrowser.on("error", (e) => {
+        console.log(" browsererr")
+
+        console.log(e)
+    })
+
     client.pupPage.on("request", (req) => {
         console.log(req.url())
     })
@@ -92,15 +98,11 @@ setInterval(() => {
     //             })
     //     })
 
-    if (client.pupPage["_workers"].size === 0) {
-        console.log("WORKERS DELETED =================================== \n")
-        client.pupPage["_workers"] = workers;
-    }
-
     // console.log(workers, " workers list from variable \n")
 
     // console.log(client.pupPage["_workers"], " workers list from puppage")
 
+    client.pupBrowser.pages().then(p => console.log(p.length, + " number of pages"))
     console.log("====================================================================================\n\n")
 }, 10000)
 
