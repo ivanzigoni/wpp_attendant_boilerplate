@@ -9,7 +9,7 @@ const client = new Client({
     //     args: ["--disable-gpu", "--no-sandbox"],
     //     headless: true
     // },
-    puppeteer: { args: ["--no-sandbox"] },
+    puppeteer: { args: ["--no-sandbox", "--disable-dev-shm-usage"] },
     // authStrategy: new LocalAuth(),
 });
 
