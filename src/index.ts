@@ -3,15 +3,13 @@ _.config()
 
 import {Client, LocalAuth} from "whatsapp-web.js";
 import * as qterminal from "qrcode-terminal";
-
-console.log(process.env.ENV)
+import { main as dnnHook } from "./events/dayandnite/index";
 
 const client = new Client({
     puppeteer: { args: ["--no-sandbox", "--disable-dev-shm-usage"] },
     authStrategy: new LocalAuth()
 });
 
-console.log("akifora")
 client.on('qr', (qr) => {
 
     qterminal.generate(qr, { small: true })
@@ -85,6 +83,8 @@ client.on("auth_failure", () => {
 client.on("disconnected", () => {
     console.log("disconnected")
 })
+
+dnnHook(client)
 
 client.initialize()
     .then(_ => { console.log("initialized client") })
