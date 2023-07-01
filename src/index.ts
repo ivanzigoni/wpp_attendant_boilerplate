@@ -2,7 +2,7 @@ import * as _ from "dotenv";
 _.config()
 
 import {Client, LocalAuth} from "whatsapp-web.js";
-import { generate } from "qrcode-terminal";
+import * as qterminal from "qrcode-terminal";
 
 console.log(process.env.ENV)
 
@@ -11,12 +11,10 @@ const client = new Client({
     authStrategy: new LocalAuth()
 });
 
-console.log("aki")
+console.log("akifora")
 client.on('qr', (qr) => {
-    // Generate and scan this code with your phone
-    generate(qr, { small: true })
-    console.log("aki")
-    console.log(qr);
+
+    qterminal.generate(qr, { small: true })
 
     if (client.pupPage && client.pupBrowser) {
 
