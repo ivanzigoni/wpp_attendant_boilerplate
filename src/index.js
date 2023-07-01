@@ -1,109 +1,58 @@
-const { Client, LocalAuth } = require('whatsapp-web.js');
-const _ = require("lodash");
-const q = require("qrcode-terminal")
-const os = require("os");
-
-const client = new Client({
-    // puppeteer: {
-    //     executablePath: '/usr/bin/google-chrome',
-    //     args: ["--disable-gpu", "--no-sandbox"],
-    //     headless: true
-    // },
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require("dotenv");
+_.config();
+var whatsapp_web_js_1 = require("whatsapp-web.js");
+var qrcode_terminal_1 = require("qrcode-terminal");
+console.log(process.env.ENV);
+var client = new whatsapp_web_js_1.Client({
     puppeteer: { args: ["--no-sandbox", "--disable-dev-shm-usage"] },
-    // authStrategy: new LocalAuth(),
 });
-
-client.on('qr', (qr) => {
+client.on('qr', function (qr) {
     // Generate and scan this code with your phone
-    q.generate(qr, { small: true })
-    console.log(os.arch())
+    (0, qrcode_terminal_1.generate)(qr, { small: true });
     console.log(qr);
-
-    client.pupBrowser.on("error", (e) => {
-        console.log(" browsererr")
-
-        console.log(e)
-    })
-
-    client.pupPage.on("request", (req) => {
-        console.log(req.url())
-    })
-
-    client.pupPage.on("error", (err) => {
-        console.log("pupPage normal error \n")
-
-        console.log(err)
-    })
-
-    client.pupPage.on("pageerror", (err) => {
-        console.log("pupPage pagerror \n")
-
-        console.log(err)
-    })
-
-    client.pupPage.on("requestfailed", (req) => {
-        console.log("pupPage requestfailed \n")
-
-
-        console.log(req.url(), " url")
-        console.log(req.failure().errorText)
-        // console.log(req.response())
-    })
+    client.pupBrowser.on("error", function (e) {
+        console.log(" browsererr");
+        console.log(e);
+    });
+    client.pupPage.on("request", function (req) {
+        console.log(req.url());
+    });
+    client.pupPage.on("error", function (err) {
+        console.log("pupPage normal error \n");
+        console.log(err);
+    });
+    client.pupPage.on("pageerror", function (err) {
+        console.log("pupPage pagerror \n");
+        console.log(err);
+    });
+    client.pupPage.on("requestfailed", function (req) {
+        console.log("pupPage requestfailed \n");
+        console.log(req.url(), " errUrl");
+        console.log(req.failure().errorText);
+    });
 });
-
-client.on('ready', () => {
+client.on('ready', function () {
     console.log('Client is ready!');
 });
-
-client.on('message', msg => {
-    console.log("aki")
+client.on('message', function (msg) {
+    console.log("aki");
     if (msg.body === '!ping') {
         msg.reply('pong');
     }
 });
-
-client.on("message_create", msg => {
-    const {
-        from,
-        fromMe,
-        body
-    } = msg;
-
-    console.log("inside message_create")
-
+client.on("message_create", function (msg) {
+    var from = msg.from, fromMe = msg.fromMe, body = msg.body;
+    console.log("inside message_create");
     if (body === "teste") {
-        client.sendMessage(
-            from,
-            body + ` ${from} gosta de batata`
-        )
+        client.sendMessage(from, body + " ".concat(from, " gosta de batata"));
     }
-})
-
-client.on("auth_failure", () => {
-    console.log("auth failure")
-})
-
-client.on("disconnected", () => {
-    console.log("disconnected")
-})
-
-setInterval(() => {
-    console.log(new Date().toISOString() + " app running")
-
-    // client.pupPage.goto("https://chromium.googlesource.com/chromium/src/+/refs/tags/101.0.4950.0")
-    //     .then(res => {
-    //         client.pupPage.waitForSelector(".Site-header")
-    //             .then(sel => {
-    //                 console.log("aqui")
-    //             })
-    //     })
-
-    // console.log(workers, " workers list from variable \n")
-
-    // console.log(client.pupPage["_workers"], " workers list from puppage")
-
-    client.pupBrowser.pages().then(p => console.log(p.length, " number of pages"))
-    console.log("===================================================================================\n\n")
-}, 10000)
-
+});
+client.on("auth_failure", function () {
+    console.log("auth failure");
+});
+client.on("disconnected", function () {
+    console.log("disconnected");
+});
 client.initialize();
