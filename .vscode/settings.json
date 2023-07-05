@@ -1,0 +1,8 @@
+{
+    "eslint.codeActionsOnSave.mode": "problems",
+    "eslint.nodeEnv": "",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+      },
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+}
