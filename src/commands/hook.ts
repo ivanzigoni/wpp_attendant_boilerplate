@@ -2,7 +2,7 @@ import fs from "fs";
 import * as path from "path";
 import { Client, Message } from "whatsapp-web.js";
 import { main as initialHook } from "./initialHook";
-import { Command, CommandsMap } from "./command";
+import { CommandsMap } from "./Command";
 
 export function main(client: Client) {
   const commands = fs
@@ -34,7 +34,7 @@ export function main(client: Client) {
         arg1 
         arg2
         arg3
-        
+        ...
     */
 
     const [command, ...payload] = body.split("\n");
@@ -45,6 +45,4 @@ export function main(client: Client) {
       commandsMap[command].main(msg, client, payload);
     }
   });
-
-  console.log("after message_create hook");
 }

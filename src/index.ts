@@ -13,7 +13,7 @@ hook(client);
 
 client
   .initialize()
-  .then((_) => {
+  .then(() => {
     console.log("initialized client");
   })
   .catch((_) => {
